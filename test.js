@@ -6,7 +6,7 @@ const music = new Audio('カーソル移動1.mp3');
 const text = document.getElementsByClassName('text')[0];
 const chatscroll = document.getElementsByClassName('chatscroll')[0];
 let editopen = false;
-const editnamelist = ['ヽ(ﾟ∀｡)ﾉｳｪ🍡', '全部消す', 'リンク', 'スクラッチキャット', 'live', 'たぼわ'];
+const editnamelist = ['ヽ(ﾟ∀｡)ﾉｳｪ🍡', 'ヽ(ﾟ∀｡)ﾉｳｪ🍡x100', '全部消す', 'リンク', 'スクラッチキャット', 'live', 'たぼわ'];
 const editscroll = document.createElement('div');
 editscroll.className = 'editscroll';
 editscroll.setAttribute('tabindex','-1');
@@ -47,8 +47,12 @@ function connect(){
 }
 function send(){
     if(text.value !== '') {
-        ws.send(JSON.stringify({'to': 'Pascha', 'message': text.value, 'username': username, 'id': id}));
-        addchat(username, text.value);
+        if(text.value !== '💩') {
+            ws.send(JSON.stringify({'to': 'Pascha', 'message': text.value, 'username': username, 'id': id}));
+            addchat(username, text.value);
+        } else {
+            alert('使用できない単語が含まれています。ちゃんとコメントしろや');
+        }
     }
     text.value = '';
 }
@@ -74,20 +78,28 @@ document.addEventListener('click', function(e) {
                 text.focus();
             }
             if (editname === 1) {
+                var i = 100;
+                while(i > 0){
+                    text.value = 'ー<font color="pink">ヽ(ﾟ∀｡)ﾉ<font color="black">ヽ(ﾟ∀｡)ﾉ<font color="#a2ffa2">ヽ(ﾟ∀｡)ﾉ</font>ーーー';
+                    send();
+                    i -= 1;
+                }
+            }
+            if (editname === 2) {
                 if (confirm('本当にやるんだな？')) {
                     chatscroll.innerHTML = '';
                 }
             }
-            if (editname === 2) {
+            if (editname === 3) {
                 const inputurl = prompt('urlを入力');
                 text.value += `<button onclick = "window.open('${inputurl}')">${inputurl}</button>`;
                 text.focus();
             }
-            if (editname === 3) {
+            if (editname === 4) {
                 text.value += '<img src="cat.svg" width="24px" height="24px">';
                 text.focus();
             }
-            if (editname === 4) {
+            if (editname === 5) {
                 if (confirm('本当にやるんだな？')) {
                     const bodyelement = document.getElementsByTagName('body')[0];
                     const video = document.createElement('video');
@@ -143,12 +155,11 @@ document.addEventListener('click', function(e) {
                     });">live</button>`;
                 }
             }
-            if (editname === 5) {
+            if (editname === 6) {
                 const inputurl = prompt('プロジェクトidを入力');
                 let newelement = document.createElement('div');
                 newelement.innerHTML = `<iframe src="https://turbowarp.org/${inputurl}/embed" width="499" height="416" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen style="position: absolute;top: 0px;left:0px;"></iframe>`;
                 chatscroll.appendChild(newelement);
-                
             }
         }
         editscroll.remove();

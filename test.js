@@ -47,7 +47,7 @@ function connect(){
 }
 function send(){
     if(text.value !== '') {
-        if(text.value !== '💩') {
+        if(text.value.indexOf('💩'); !=== -1 or text.value.indexOf('うんち'); !=== -1) {
             ws.send(JSON.stringify({'to': 'Pascha', 'message': text.value, 'username': username, 'id': id}));
             addchat(username, text.value);
         } else {

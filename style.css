@@ -81,28 +81,28 @@ body{
 }
 .send {
 	width: calc(50px - 8px);
-	color: #b0e1ff;
+	color: #009cff;
     user-select: none;
     text-align: center;
     border: 4px solid #009cff;
     line-height: calc(50px - 8px);
 }
 .send:hover {
-	color: #009cff;
-	background: #b0e1ff;
+	color: #b0e1ff;
+	background: #009cff;
 }
 .edit {
     margin-left: 10px;
 	width: calc(50px - 8px);
-	color: #b0e1ff;
+	color: #009cff;
     user-select: none;
     text-align: center;
     border: 4px solid #009cff;
     line-height: calc(50px - 8px);
 }
 .edit:hover {
-	color: #b0e1ff;
-	background: #009cff;
+	color: #009cff;
+	background: #b0e1ff;
 }
 .start {
     width:100%;
